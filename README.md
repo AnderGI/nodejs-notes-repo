@@ -7,4 +7,4 @@
 # 1.3. Which problems does it solve more efficiently than other languajes ?
 
 # Bibliography
-(Oficial NodeJS Documentation)[https://nodejs.org/en/learn/getting-started/introduction-to-nodejs][^1]
+(Oficial NodeJS Documentation)[https://nodejs.org/en/learn/getting-started/introduction-to-nodejs]
