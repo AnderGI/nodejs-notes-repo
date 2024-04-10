@@ -6,13 +6,19 @@
 >[!IMPORTANT]
 >NodeJs is a single-threaded, JS runtime environment, based on an asyncronous I/O event driven architecture
 
-### 1.2. Event Loop : NodeJs Internal execution
-### 1.2.1.- External resources
+### 1.2 Async Vs Sync
+NodeJS offers teh possibility to execute many different tasks in a blocking way (syncronous) and non-blocking way (asyncronous). Sync proccesses will be the ones that go step-by-step, so a proccess won't be executed until the previous ones are finished. Async ones will be executed, "all at the same time" independently. The finished ones will be executed while other async proccesses happen.
+
+
+### 1.3. Event Loop : NodeJs Internal execution
+### 1.3.1.- External resources
 [Philip Roberts: ¿Que diablos es el "event loop" (bucle de eventos) de todos modos? | JSConf EU](https://www.youtube.com/embed/8aGhZQkoFbQ)
 
 [Por qué JS "necesita" async-await y otros lenguajes no?](https://www.youtube.com/embed/C_eFawNnmC4)
 
-### 1.2.2.- Async Vs Sync
+### 1.3.2.- Event Loop
+
+
 
 ### Bibliography
 [^1]: [Oficial NodeJS Documentation](https://nodejs.org/en/learn/getting-started/introduction-to-nodejs)
