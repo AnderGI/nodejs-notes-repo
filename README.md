@@ -6,13 +6,13 @@
 >[!IMPORTANT]
 >NodeJs is a single-threaded, JS runtime environment, based on an asyncronous I/O event driven architecture
 
-### 1.2. How does it work ? Event Loop
+### 1.2. Event Loop : NodeJs Internal execution
+### 1.2.1.- External resources
 [Philip Roberts: ¿Que diablos es el "event loop" (bucle de eventos) de todos modos? | JSConf EU](https://www.youtube.com/embed/8aGhZQkoFbQ)
 
 [Por qué JS "necesita" async-await y otros lenguajes no?](https://www.youtube.com/embed/C_eFawNnmC4)
 
-
-### 1.3. Which problems does it solve more efficiently than other languajes ?
+### 1.2.2.- Async Vs Sync
 
 ### Bibliography
 [^1]: [Oficial NodeJS Documentation](https://nodejs.org/en/learn/getting-started/introduction-to-nodejs)
