@@ -1,2 +1,10 @@
 # nodejs-notes-repo
-This repo will be used as a centralized point for all the contents that can have some value having a better NodeJS understanding.
+# 1. Introduction
+# 1.1. What is NodeJS ?
+
+# 1.2. How does it work ?
+
+# 1.3. Which problems does it solve more efficiently than other languajes ?
+
+# Bibliography
+(Oficial NodeJS Documentation)[https://nodejs.org/en/learn/getting-started/introduction-to-nodejs][^1]
