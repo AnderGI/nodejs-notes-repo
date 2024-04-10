@@ -13,6 +13,7 @@ Node, at its core, is based on callback functions to provide that asychronicity.
 
 More about async vs sync, callbacks, promises, promisification and overall asychronous javascript [here](https://javascript.info/callbacks). All the "Promises, async/await" chapter covers async topics, some of which, like Microtasks are really handy for understanding the preference some async functions have over others (something event loop handles).
 
+[Promises - Part 8 of Functional Programming in JavaScript](https://www.youtube.com/watch?v=2d7s3spWAzo&list=PL0zVEGEvSaeEd9hlmCXrk5yUyqUag-n84&index=8)
 
 ### 1.3. Event Loop : NodeJs Internal execution
 ### 1.3.1.- External resources
