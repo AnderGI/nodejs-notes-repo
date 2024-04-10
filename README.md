@@ -15,6 +15,9 @@ More about async vs sync, callbacks, promises, promisification and overall asych
 
 [Promises - Part 8 of Functional Programming in JavaScript](https://www.youtube.com/watch?v=2d7s3spWAzo&list=PL0zVEGEvSaeEd9hlmCXrk5yUyqUag-n84&index=8)
 
+>[!TIP]
+>Callbacks first parameters in Node, are errors.
+
 ### 1.3. Event Loop : NodeJs Internal execution
 [Philip Roberts: ¿Que diablos es el "event loop" (bucle de eventos) de todos modos? | JSConf EU](https://www.youtube.com/embed/8aGhZQkoFbQ)
 [Por qué JS "necesita" async-await y otros lenguajes no?](https://www.youtube.com/embed/C_eFawNnmC4)
