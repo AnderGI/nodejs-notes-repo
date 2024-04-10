@@ -19,7 +19,7 @@ More about async vs sync, callbacks, promises, promisification and overall asych
 >Callbacks first parameters in Node, are errors.
 
 >[!NOTE]
->Sync =/= Secuantial async =/= Parallel async (👀 on Promise API)
+>Sync =/= Secuantial async (async await) =/= Parallel async (👀 on Promise API)
 
 ### 1.3. Event Loop : NodeJs Internal execution
 [Philip Roberts: ¿Que diablos es el "event loop" (bucle de eventos) de todos modos? | JSConf EU](https://www.youtube.com/embed/8aGhZQkoFbQ)
