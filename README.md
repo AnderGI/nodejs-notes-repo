@@ -24,7 +24,20 @@ More about async vs sync, callbacks, promises, promisification and overall asych
 ### 1.3. Event Loop : NodeJs Internal execution
 [Philip Roberts: ¿Que diablos es el "event loop" (bucle de eventos) de todos modos? | JSConf EU](https://www.youtube.com/embed/8aGhZQkoFbQ)
 [Por qué JS "necesita" async-await y otros lenguajes no?](https://www.youtube.com/embed/C_eFawNnmC4)
+[La Guía Definitiva del Event Loop en JS (async, promises, callbacks, render)](https://www.youtube.com/watch?v=dX2lThXc0p4)
+[Event loop: microtasks and macrotasks](https://javascript.info/event-loop)
 
+NojeJs works with a concurrency(even thought is single-threaded, proccesses will seem to be working all together by giving some microtime to each other) model based on an event loop. If JavaScript only works in one single-thread, hoe can a NodeJS server handle multiple requests at the same time? Event-Loop in coming!!
+
+>[!NOTE]
+>In NodeJS all code will be executed in its single thread, except for the blocking tasks.
+
+
+>[!IMPORTANT]
+> Code + Call Stack + C++ APIs + Tasks Queue + Event Loop
+
+>[!IMPORTANT]
+> NodeJS is extremely efficient in I/O bound apps.
 
 ### 1.4. Module system
 
