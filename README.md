@@ -7,7 +7,7 @@
 >NodeJs is a single-threaded, JS runtime environment, based on an asyncronous I/O event driven architecture
 
 ### 1.2 Async Vs Sync
-NodeJS offers teh possibility to execute many different tasks in a blocking way (syncronous) and non-blocking way (asyncronous). Sync proccesses will be the ones that go step-by-step, so a proccess won't be executed until the previous ones are finished. Async ones will be executed, "all at the same time" independently. The finished ones will be executed while other async proccesses happen.
+NodeJS offers the possibility to execute many different tasks in a blocking way (syncronous) and non-blocking way (asyncronous). Sync proccesses will be the ones that go step-by-step, so a proccess won't be executed until the previous ones are finished. Async ones will be executed, "all at the same time" independently. The finished ones will be executed while other async proccesses happen.
 
 
 ### 1.3. Event Loop : NodeJs Internal execution
