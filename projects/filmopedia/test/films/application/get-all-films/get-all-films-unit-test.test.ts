@@ -16,36 +16,47 @@ describe("Get All Films Use Case Unit Tester", () => {
   const mockRepoBeforeEachSetUp = (cb: () => Promise<Film[]>) : void => {
     mockRepo = mock.fn(cb)
   }
+
+  const callMockRepoFromUseCase = (repo:Mock<GetAllFilms>) : void => {
+    getAllFilms(repo)();
+  }
+  // any al no saber el tipo de calls
+  const getMockRepoCalls = async (repo:Mock<GetAllFilms>) : Promise<any[]> => {
+    // Get the calls 
+    return  await repo.mock.calls;
+  }
   
-  test("Calls getAllFilms function use case", () => {
+  test("Calls getAllFilms function use case", async () => {
     mockRepoBeforeEachSetUp(() => Promise.resolve([]));
     // No calls
-    assert.strictEqual(mockRepo.mock.calls.length, 0);
+    const noCalls = await getMockRepoCalls(mockRepo)
+    assert.strictEqual(noCalls.length, 0);
     // Here it is being called once
-    getAllFilms(mockRepo)();
+    callMockRepoFromUseCase(mockRepo)
     // Once
-    assert.strictEqual(mockRepo.mock.calls.length, 1);
+    const firstCall = await getMockRepoCalls(mockRepo)
+    assert.strictEqual(firstCall.length, 1);
   });
 
 
   test('If function is being called with the right arguments', async () => {
     // Set up mock
     mockRepoBeforeEachSetUp(() => Promise.resolve(fakeFilms));
-    // Use case
-    getAllFilms(mockRepo)();
     // Check calls
-    const call =  await mockRepo.mock.calls[0];
-    assert.deepStrictEqual(call.arguments, []);
+    callMockRepoFromUseCase(mockRepo)
+    const functionCalls =  await getMockRepoCalls(mockRepo);
+    const firstCall = functionCalls[0]
+    assert.deepStrictEqual(firstCall.arguments, []);
   })
   
   test('If returned data length equals to the expected one', async () => {    
     // Set uo mock
     mockRepoBeforeEachSetUp(() => Promise.resolve(fakeFilms));
-    // Use case
-    getAllFilms(mockRepo)();
-    // Get the call result, which is a Promise that holds another promise with an Film[] in the result property 
-    const call =  await mockRepo.mock.calls[0];
-    const callResult:(Film[] | undefined)= await call.result;
+    callMockRepoFromUseCase(mockRepo)
+    const functionCalls =  await getMockRepoCalls(mockRepo);
+    const firstCall = functionCalls[0]
+
+    const callResult:(Film[] | undefined)= await firstCall.result;
     // Check 
     await assert.strictEqual(callResult?.length, fakeFilms.length)
   })
@@ -53,11 +64,11 @@ describe("Get All Films Use Case Unit Tester", () => {
   test('If returned data is an array', async () => {
     // Set up mock
     mockRepoBeforeEachSetUp(() => Promise.resolve(fakeFilms));
-    // Use case
-    getAllFilms(mockRepo)();
-    // Get the results
-    const call =  await mockRepo.mock.calls[0];
-    const callResult:(Film[] | undefined)= await call.result;
+    callMockRepoFromUseCase(mockRepo)
+    const functionCalls =  await getMockRepoCalls(mockRepo);
+    const firstCall = functionCalls[0]
+    
+    const callResult:(Film[] | undefined)= await firstCall.result;
     // Check
     assert.strictEqual(Array.isArray(callResult), true);
     
@@ -66,11 +77,11 @@ describe("Get All Films Use Case Unit Tester", () => {
   test('If returned data deeply equals to the expected one', async () => {
     // Set up repo
     mockRepoBeforeEachSetUp(() => Promise.resolve(fakeFilms));
-    // Use case
-    getAllFilms(mockRepo)();
-    // Get result
-    const call =  await mockRepo.mock.calls[0];
-    const callResult:(Film[] | undefined)= await call.result;
+    callMockRepoFromUseCase(mockRepo)
+    const functionCalls =  await getMockRepoCalls(mockRepo);
+    const firstCall = functionCalls[0]
+    
+    const callResult:(Film[] | undefined)= await firstCall.result;
     // Check
     callResult?.forEach((film:Film, index:number) => {
       assert.deepStrictEqual(film, fakeFilms[index])
