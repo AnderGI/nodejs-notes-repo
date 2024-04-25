@@ -1,5 +1,6 @@
 import assert from "node:assert";
 import test, { Mock, describe, mock } from "node:test";
+import beforeEach from "node:test";
 import { Film } from "../../../../src/films/domain/Film.ts";
 import { GetAllFilms } from "../../../../src/films/domain/repository/GetAllFilmsRepository.ts";
 import {getAllFilms} from "../../../../src/films/application/get-all-films/get-all-films.ts";
@@ -9,8 +10,15 @@ import { fakeFilms } from "./fakeTestData.ts";
 // For that and knowing that I still do not have a GetAllFilmsRepositoy I am going to mock it
 describe("Get All Films Use Case Unit Tester", () => {
   
+  let mockRepo: Mock<GetAllFilms>;
+
+  // beforeEach is not being correctly imported therefore I will create a funcion to setup the mockRepo each test call
+  const mockRepoBeforeEachSetUp = (cb: () => Promise<Film[]>) : void => {
+    mockRepo = mock.fn(cb)
+  }
+  
   test("Calls getAllFilms function use case", () => {
-    const mockRepo: Mock<GetAllFilms>  = mock.fn(() => Promise.resolve([]));
+    mockRepoBeforeEachSetUp(() => Promise.resolve([]));
     // No calls
     assert.strictEqual(mockRepo.mock.calls.length, 0);
     // Here it is being called once
@@ -19,28 +27,53 @@ describe("Get All Films Use Case Unit Tester", () => {
     assert.strictEqual(mockRepo.mock.calls.length, 1);
   });
 
-  test('getAllFilms returns a list of films', async () => {
-    // Pattern for creating fake test data ¿?
-    const expectedFilms: Film[] = fakeFilms;
-    const mockRepo: Mock<GetAllFilms>  = mock.fn(() => Promise.resolve(expectedFilms));
-    getAllFilms(mockRepo)();
-    // Problem -> In runtime I cannot validate TS types
-    const call =  await mockRepo.mock.calls[0]; // Only called once
-    // However, I can validate
-    // If it is being called with the expected arguments
-    assert.deepStrictEqual(call.arguments, []); // mock repo is being called with no arguments
- 
-    const callResult:(Film[] | undefined)= await call.result;
-    
-    // If returned data equlas the expected one
-    await assert.strictEqual(callResult?.length, expectedFilms.length)
-    // If data returned is an array
-    await assert.strictEqual(Array.isArray(callResult), true);
 
-    // If the films of the expected data are equal to the ones from the returned array
+  test('If function is being called with the right arguments', async () => {
+    // Set up mock
+    mockRepoBeforeEachSetUp(() => Promise.resolve(fakeFilms));
+    // Use case
+    getAllFilms(mockRepo)();
+    // Check calls
+    const call =  await mockRepo.mock.calls[0];
+    assert.deepStrictEqual(call.arguments, []);
+  })
+  
+  test('If returned data length equals to the expected one', async () => {    
+    // Set uo mock
+    mockRepoBeforeEachSetUp(() => Promise.resolve(fakeFilms));
+    // Use case
+    getAllFilms(mockRepo)();
+    // Get the call result, which is a Promise that holds another promise with an Film[] in the result property 
+    const call =  await mockRepo.mock.calls[0];
+    const callResult:(Film[] | undefined)= await call.result;
+    // Check 
+    await assert.strictEqual(callResult?.length, fakeFilms.length)
+  })
+
+  test('If returned data is an array', async () => {
+    // Set up mock
+    mockRepoBeforeEachSetUp(() => Promise.resolve(fakeFilms));
+    // Use case
+    getAllFilms(mockRepo)();
+    // Get the results
+    const call =  await mockRepo.mock.calls[0];
+    const callResult:(Film[] | undefined)= await call.result;
+    // Check
+    assert.strictEqual(Array.isArray(callResult), true);
+    
+  })
+
+  test('If returned data deeply equals to the expected one', async () => {
+    // Set up repo
+    mockRepoBeforeEachSetUp(() => Promise.resolve(fakeFilms));
+    // Use case
+    getAllFilms(mockRepo)();
+    // Get result
+    const call =  await mockRepo.mock.calls[0];
+    const callResult:(Film[] | undefined)= await call.result;
+    // Check
     callResult?.forEach((film:Film, index:number) => {
       assert.deepStrictEqual(film, fakeFilms[index])
     })
   })
-
 });
